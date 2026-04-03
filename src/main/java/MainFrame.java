@@ -6,6 +6,7 @@ import java.awt.*;
 public class MainFrame extends JFrame {
     private TextPanel textPanel;
     private Toolbar toolbar;
+    private FormPanel formPanel;
 
     public MainFrame(String title) {
         super(title);
@@ -19,6 +20,7 @@ public class MainFrame extends JFrame {
 
         toolbar = new Toolbar();
         textPanel = new TextPanel();
+        formPanel = new FormPanel();
 
         toolbar.setStringListener(new StringListener() {
             @Override
@@ -27,6 +29,7 @@ public class MainFrame extends JFrame {
             }
         });
 
+        add(formPanel, BorderLayout.WEST);
         add(toolbar, BorderLayout.PAGE_START);
         add(textPanel, BorderLayout.CENTER);
 
