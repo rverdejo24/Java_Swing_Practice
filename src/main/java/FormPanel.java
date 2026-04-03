@@ -25,6 +25,10 @@ public class FormPanel extends JPanel {
         Border outerBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 
         setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
+        add(nameLabel);
+        add(nameField);
+        add(occupationLabel);
+        add(occupationField);
 
     }
 }
