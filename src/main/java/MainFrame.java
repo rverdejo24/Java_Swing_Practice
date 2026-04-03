@@ -1,3 +1,5 @@
+import interfaces.StringListener;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,7 +20,12 @@ public class MainFrame extends JFrame {
         toolbar = new Toolbar();
         textPanel = new TextPanel();
 
-        toolbar.setTextPanel(textPanel);
+        toolbar.setStringListener(new StringListener() {
+            @Override
+            public void textEmitted(String text) {
+                textPanel.appendText(text);
+            }
+        });
 
         add(toolbar, BorderLayout.PAGE_START);
         add(textPanel, BorderLayout.CENTER);
