@@ -1,3 +1,5 @@
+import events.FormEvent;
+import interfaces.FormListener;
 import interfaces.StringListener;
 
 import javax.swing.*;
@@ -26,6 +28,16 @@ public class MainFrame extends JFrame {
             @Override
             public void textEmitted(String text) {
                 textPanel.appendText(text);
+            }
+        });
+
+        formPanel.setFormListener(new FormListener() {
+            @Override
+            public void formEventOccurred(FormEvent e) {
+                String name = e.getName();
+                String occupation = e.getOccupation();
+
+                textPanel.appendText(name + ": " + occupation + "\n");
             }
         });
 
