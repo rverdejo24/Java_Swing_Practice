@@ -28,9 +28,9 @@ public class FormPanel extends JPanel {
         ageList = new JList();
 
         DefaultListModel ageModel = new DefaultListModel();
-        ageModel.addElement("Under 18");
-        ageModel.addElement("18 to 65");
-        ageModel.addElement("65 over");
+        ageModel.addElement(new AgeCategory(0, "Under 18"));
+        ageModel.addElement(new AgeCategory(1, "18 to 65"));
+        ageModel.addElement(new  AgeCategory(2, "65 to 18"));
         ageList.setModel(ageModel);
 
         ageList.setPreferredSize(new Dimension(110, 68));
@@ -44,11 +44,11 @@ public class FormPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText();
                 String occupation = occupationField.getText();
-                String ageCat = ageList.getSelectedValue().toString();
+                AgeCategory ageCat = (AgeCategory) ageList.getSelectedValue();
 
                 System.out.println(ageCat);
 
-                FormEvent ev = new FormEvent(this, name, occupation);
+                FormEvent ev = new FormEvent(this, name, occupation, ageCat.getId());
 
                 if (formListener != null) {
                     formListener.formEventOccurred(ev);
@@ -120,4 +120,23 @@ public class FormPanel extends JPanel {
         this.formListener = formListener;
     }
 
+}
+
+class AgeCategory {
+    private String text;
+    private int id;
+
+    public AgeCategory(int id, String text) {
+        this.id = id;
+        this.text = text;
+
+    }
+
+    public String toString() {
+        return text;
+    }
+
+    public int getId() {
+        return id;
+    }
 }
